@@ -22,12 +22,12 @@ public class OrderController {
 
     @Autowired
     public OrderController(OrderService orderService) {
-        this.orderService = orderService;
-    }
+            this.orderService = orderService;
+        }
 
-    @GetMapping(value = "/getAllOrders")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Order> getAll() throws SQLException {
-        return orderService.getAllOrders();
+        @GetMapping(value = "/getAllOrders")
+        @ResponseStatus(HttpStatus.OK)
+        public List<Order> getAll() throws SQLException {
+            return orderService.getAllOrders();
     }
 }

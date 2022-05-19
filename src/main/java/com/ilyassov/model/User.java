@@ -1,5 +1,6 @@
 package com.ilyassov.model;
 
+import com.ilyassov.validator.PasswordValidatorConstraint;
 import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 
@@ -22,6 +23,7 @@ public class User{
     private String username;
 
     @Column(name = "password")
+    @PasswordValidatorConstraint
     private String password;
 
     @ManyToOne

@@ -1,6 +1,7 @@
 package com.ilyassov.repository;
 
 import com.ilyassov.model.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -26,7 +27,6 @@ public class UserRepositoryImpl implements UserRepository {
     @Transactional
     public List<User> getUsers() {
         List<User> users =  sessionFactory.getCurrentSession().createQuery("FROM User u").list();
-        System.out.println(users);
         return users;
     }
 
@@ -34,6 +34,15 @@ public class UserRepositoryImpl implements UserRepository {
     public List<User> getUserById(int id) {
         List<User> users = sessionFactory.getCurrentSession().createQuery("FROM User u WHERE u.id = :id").setParameter("id", id).list();
         return users;
+    }
+
+    @Override
+    public User addUser(User user) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.persist(user);
+        session.getTransaction().commit();
+        return user;
     }
 
 }

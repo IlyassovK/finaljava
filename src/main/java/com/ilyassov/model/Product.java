@@ -3,6 +3,8 @@ package com.ilyassov.model;
 import lombok.*;
 import net.minidev.json.annotate.JsonIgnore;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.persistence.*;
 
 import java.util.Set;
@@ -17,7 +19,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -40,5 +42,7 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     Set<User> users;
+
+
 
 }
